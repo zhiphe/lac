@@ -245,7 +245,7 @@ RVAL MainTagger::init_model(const std::string &model_path)
         return _FAILED;
     }
 
-    _inference_program = paddle::inference::Load(_executor, _scope, model_path);
+    _inference_program = paddle::inference::Load(_executor, _scope, model_path + "model.pdmodel", model_path + "params.pdparams");
     if (!_inference_program) {
         std::cerr << "create _inference_program failed" << std::endl;
         return _FAILED;
