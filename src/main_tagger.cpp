@@ -299,8 +299,8 @@ RVAL MainTagger::predict(const std::vector<int> &word_model_input_vector,
     std::map<std::string, const paddle::framework::LoDTensor*> &feed_targets = buff->feed_targets;
     std::map<std::string, paddle::framework::LoDTensor*> &fetch_targets = buff->fetch_targets;
 
-    feed_targets["word"] = &tensor_word;
-    fetch_targets["crf_decoding_0.tmp_0"] = &tensor_output;
+    feed_targets["words"] = &tensor_word;
+    fetch_targets["save_infer_model/scale_0"] = &tensor_output;
 
     _executor->RunPreparedContext(buff->ctx.get(), _scope, &feed_targets,
                    &fetch_targets, true, true, buff->feed_holder_name,
